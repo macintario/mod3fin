@@ -10,28 +10,31 @@
     featureGroup = L.featureGroup().addTo(map);
     ////////////////////////////////////////////////////////////
     document.getElementById("enviarDatos").addEventListener("click", function (event) {
-event.preventDefault();
+    event.preventDefault();
 
     datosParaEnviar = document.getElementById("datosEntrada").value;
 
+    var data  = {
+        "datosParaEnviar":datosParaEnviar
+    }
 
-
-insertToMap(data)
+        sendToTheServer(data)
 
 });
 
 
-function insertMap(data){
+function sendToTheServer(data){
 $.ajax({
 type: 'POST',
 contentType: 'application/json',
-url: '/jams',
+url: '/getLista',
 dataType : 'json',
 data : JSON.stringify(data),
 success : function(result) {
-
+    console.log(result);
+    $("#result").append('result:'+result.data.datosParaEnviar+' :D ');
 },error : function(result){
-console.log("error");
+    console.log("error");
 }
 });
 
