@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #f7f7f7;
+}
+
+
+#map {
+    height: 500px;
+}
+
+#container {
+	min-width: 320px;
+	max-width: 600px;
+	margin: 0 auto;
+}
