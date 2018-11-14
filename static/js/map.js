@@ -32,7 +32,8 @@ dataType : 'json',
 data : JSON.stringify(data),
 success : function(result) {
     console.log(result);
-    $("#result").append('result:'+result.data.datosParaEnviar+' :D ');
+    $("#result").append('result:'+result.data.categorias+' :D ');
+    verGrafica(result.data.categorias, result.data.data)
 },error : function(result){
     console.log("error");
 }
@@ -40,6 +41,7 @@ success : function(result) {
 
 }
     ////////////////////////////////////////////////////////////
+function verGrafica(categorias, data){
     var chart = Highcharts.chart('container', {
 
     title: {
@@ -51,18 +53,19 @@ success : function(result) {
     },
 
     xAxis: {
-        categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: categorias
     },
 
     series: [{
         type: 'column',
         colorByPoint: true,
-        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+        data: data,
         showInLegend: false
     }]
 
 });
 
+}
 
 $('#plain').click(function () {
     chart.update({
