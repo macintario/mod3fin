@@ -9,6 +9,34 @@
     L.mapbox.styleLayer("mapbox://styles/mapbox/streets-v10").addTo(map);
     featureGroup = L.featureGroup().addTo(map);
     ////////////////////////////////////////////////////////////
+    document.getElementById("enviarDatos").addEventListener("click", function (event) {
+event.preventDefault();
+
+    datosParaEnviar = document.getElementById("datosEntrada").value;
+
+
+
+insertToMap(data)
+
+});
+
+
+function insertMap(data){
+$.ajax({
+type: 'POST',
+contentType: 'application/json',
+url: '/jams',
+dataType : 'json',
+data : JSON.stringify(data),
+success : function(result) {
+
+},error : function(result){
+console.log("error");
+}
+});
+
+}
+    ////////////////////////////////////////////////////////////
     var chart = Highcharts.chart('container', {
 
     title: {
@@ -20,7 +48,7 @@
     },
 
     xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec']
     },
 
     series: [{
